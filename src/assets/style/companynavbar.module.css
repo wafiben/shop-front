@@ -1,0 +1,44 @@
+
+.containenavebarrcompany {
+  position: relative;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  width: auto;
+  margin-top: 1%;
+  background-color: #fffafa;
+  border-radius: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  }
+  .navebarreiconcompany {
+  
+    display: flex;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    width: 90%;
+    position: sticky;
+    top: 20px;
+    margin-bottom: 1%;
+  }
+  .iconnavecompany{
+	list-style-type: none;
+    width:auto ;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    top: 20px;
+    margin-bottom: 1%;
+  }
+  .pp{
+     width: 10%;
+     background-color: red;
+  }

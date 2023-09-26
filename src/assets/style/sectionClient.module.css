@@ -1,0 +1,6 @@
+.item:hover {
+  cursor: pointer;
+}
+.item {
+  list-style: none;
+}

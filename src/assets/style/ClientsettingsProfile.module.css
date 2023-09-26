@@ -1,0 +1,21 @@
+.settingsprofilclient {
+  background-color:  #FFFAFA;
+padding: 2%;
+border-radius: 9px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.containerdivsettingclient {
+  background-color:  #FFFAFA;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.divdetai{
+
+
+
+  margin-bottom: 20%;
+}

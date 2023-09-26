@@ -1,0 +1,68 @@
+/* 
+.settingsprofilcompany{
+  background-color:  #FFFAFA ;
+  border-radius: 15px;
+  margin-top: 1%;
+  width: 90%;
+  padding: 4%;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.containerdivsettingcompany{
+
+  background-color:  #FFFAFA;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+
+
+} */
+
+
+
+
+.settingsprofilcompany {
+  background-color:  #FFFAFA;
+padding: 2%;
+border-radius: 9px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.containerdivsettingcompany{
+  background-color:  #FFFAFA;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.divdetai{
+
+
+
+  margin-bottom: 20%;
+}
+.boxsetting{
+  background-color:  #FFFAFA;
+
+margin-left: auto;
+margin-right: auto;
+display: flex;
+ justify-content: center;
+}
+
+
+.changepasswordcompany{
+
+
+  
+margin-top: 20%;
+  
+  }
+
+  .body {
+    background: #f0f2f5;
+    width: auto;
+    height: auto;
+  }

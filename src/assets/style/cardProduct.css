@@ -1,0 +1,38 @@
+.card-product {
+  border-radius: 5px;
+  background-color: #fff;
+  width: 23%;
+  padding: 3px;
+  margin: 10px;
+  position: relative;
+}
+.card-product-name {
+  /*   position: relative; */
+  top: 70px;
+}
+.footer-card {
+  display: flex;
+  justify-content: space-between;
+}
+.product-quantity {
+  margin-bottom: 5px;
+  color: rgb(255, 53, 53);
+}
+.container-quantity-card-footer {
+  background-color: #fffafa;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 50px;
+  margin-right: 4px;
+}
+.text-card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top:80%;
+  height: 34px;
+ /*  height:80px */
+}

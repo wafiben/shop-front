@@ -1,0 +1,8 @@
+.burguer-menu {
+  background-color: #fffafa !important;
+  border: none !important;
+  padding: 0 !important;
+}
+.link:hover {
+  cursor: pointer;
+}

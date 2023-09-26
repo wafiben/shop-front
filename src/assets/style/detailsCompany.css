@@ -1,0 +1,54 @@
+.containercart {
+
+  background-color: #fffafa;
+  border-radius: 15px;
+
+  margin-top: 1%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+
+}
+
+.img-detailscompany {
+  width: 240px;
+  height: 200px;
+  image-rendering: auto;
+  background-color: #ffffff;
+  margin-right: auto;
+  /* object-fit: contain; */
+ 
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.nameprodact{
+  margin-left: 5%;
+  margin-top: 3%;
+  
+  }
+  .quantityunit{
+      margin-left: 75%;
+color: rgb(255, 170, 0);
+  
+  }
+  
+  
+  .prix{
+    margin-left: 5%;
+
+  
+  }
+  
+  .divcart{
+    border: solid 2px #f0f2f5;
+    margin-top: 1%;
+    margin-bottom: 5%;
+         background-color: #ffffff;
+         
+
+  }
