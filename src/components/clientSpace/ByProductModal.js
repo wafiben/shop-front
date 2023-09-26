@@ -27,9 +27,9 @@ const ByProductModal = ({
     }
   };
 
-  const addarticleToShop=()=>{
-    
-  }
+  const addarticleToShop = () => {
+    console.log("prepering to add to the shop");
+  };
 
   return (
     <>
