@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import { useErrorMessage } from "../../hooks/useErrorMessage";
 
 const ByProductModal = ({
   show,
@@ -8,15 +9,25 @@ const ByProductModal = ({
   nameProduct,
   price,
   SelectedFile,
+  qte,
 }) => {
   const [quantity, setQuantity] = useState(1);
+  const { message, setErrorMessage, setTimeShow } = useErrorMessage();
 
   const [sum, setSum] = useState(price);
+  const notify = () => {
+    setErrorMessage("quantity");
+    setTimeShow();
+  };
 
   const incrementQuantity = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    setSum(newQuantity * price);
+    if (quantity >= qte) {
+      notify();
+    } else {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      setSum(newQuantity * price);
+    }
   };
 
   const decrementQuantity = () => {
@@ -28,7 +39,11 @@ const ByProductModal = ({
   };
 
   const addarticleToShop = () => {
-    console.log("prepering to add to the shop");
+    if (quantity > qte) {
+      notify();
+    }else{
+      alert('sssss')
+    }
   };
 
   return (
@@ -62,6 +77,14 @@ const ByProductModal = ({
             Add to Shop
           </Button>
         </Modal.Footer>
+        {message && (
+          <div className="card p-3 m-2">
+            <div class="card-body fw-bold">
+              <div className="text-error">{message}</div>
+              <div className="text-error">maximum of quantity is {qte}</div>
+            </div>
+          </div>
+        )}
       </Modal>
     </>
   );

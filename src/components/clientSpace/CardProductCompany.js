@@ -8,7 +8,7 @@ function CardProductCompany({
   nameProduct,
   price,
   unitType,
-  quantity,
+  qte,
   SelectedFile,
   show,
   id,
@@ -29,7 +29,7 @@ function CardProductCompany({
 
             <h5 className="nameprodact">{nameProduct}</h5>
             <h6 className="quantityunit">
-              {quantity} {unitType}
+              {qte} {unitType}
             </h6>
             <small className="prix"> {price} DT</small>
           </div>
@@ -39,6 +39,7 @@ function CardProductCompany({
         </Button>
       </div>
       <ByProductModal
+        qte={qte}
         show={showModal}
         handleClose={handleClose}
         nameProduct={nameProduct}
