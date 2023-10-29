@@ -86,3 +86,4 @@ export const DELETE_MESSAGE_LOADING = "DELETE_MESSAGE_LOADING";
 export const DELETE_MESSAGE = "DELETE_MESSAGE";
 
 export const ADD_SHOP = "ADD_SHOP";
+/* export const ADD_SHOP = "ADD_SHOP"; */
