@@ -13,14 +13,12 @@ import {notConfirmedSPasswrdStyle} from "../../styles";
 import PhoneInput from 'react-phone-number-input';
 import {useDispatch} from "react-redux";
 import {getCodeVerification} from "../../redux/actions/auth";
-import {useErrorMessage} from "../../hooks/useErrorMessage";
 import {useSelector} from "react-redux";
 import {Spinner} from "react-bootstrap";
 
 function ClientFormSignup() {
 	const dispatch=useDispatch()
 	const navigate=useNavigate();
-	const {setErrorMessage,setTimeShow}=useErrorMessage
 	const {
 		useInfoClient,
 		onChange,

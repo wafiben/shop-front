@@ -25,6 +25,9 @@ export const useErrorMessage = (msg) => {
       case "codeVerification":
         setMessage("code is not the same that has been sended try again");
         break;
+        case "quantity":
+          setMessage("the selected quantity is greater than the available stock quantity");
+          break;
       default:
         setMessage("you have missed some informations");
     }

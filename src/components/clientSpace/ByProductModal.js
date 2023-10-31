@@ -1,6 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
+import { useErrorMessage } from "../../hooks/useErrorMessage";
+import { useDispatch } from "react-redux";
+import { addProductToShop } from "../../redux/actions/shopAction.js";
 
 const ByProductModal = ({
   show,
@@ -8,15 +11,28 @@ const ByProductModal = ({
   nameProduct,
   price,
   SelectedFile,
+  qte,
+  id
 }) => {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const { message, setErrorMessage, setTimeShow } = useErrorMessage();
+  const [shop, setShop] = useState([]);
 
   const [sum, setSum] = useState(price);
+  const notify = () => {
+    setErrorMessage("quantity");
+    setTimeShow();
+  };
 
   const incrementQuantity = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
-    setSum(newQuantity * price);
+    if (quantity >= qte) {
+      notify();
+    } else {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      setSum(newQuantity * price);
+    }
   };
 
   const decrementQuantity = () => {
@@ -27,8 +43,10 @@ const ByProductModal = ({
     }
   };
 
-  const addarticleToShop = () => {
-    console.log("prepering to add to the shop");
+  const handleShop = () => {
+    dispatch(
+      addProductToShop({ nameProduct, price, quantity, SelectedFile, sum ,id})
+    );
   };
 
   return (
@@ -58,10 +76,18 @@ const ByProductModal = ({
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addarticleToShop}>
+          <Button variant="primary" onClick={handleShop}>
             Add to Shop
           </Button>
         </Modal.Footer>
+        {message && (
+          <div className="card p-3 m-2">
+            <div class="card-body fw-bold">
+              <div className="text-error">{message}</div>
+              <div className="text-error">maximum of quantity is {qte}</div>
+            </div>
+          </div>
+        )}
       </Modal>
     </>
   );
