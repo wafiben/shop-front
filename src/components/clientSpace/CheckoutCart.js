@@ -3,15 +3,21 @@ import "../../assets/style/shopCard.css";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CheckoutCart = () => {
+  const { products } = useSelector((state) => state.shopReducer);
+  const totalSum = products.reduce((accumulator, product) => {
+    return accumulator + product.sum;
+  }, 0);
+
   const { id, nameCompany } = useParams();
   const handleNavigate = useNavigate();
   return (
     <div className="container d-flex align-items-center justify-content-around m-4">
       <tbody class="cart item">
-        {[1, 2].map((elt) => (
-          <ShopCard />
+        {products.map((product) => (
+          <ShopCard product={product} id={product.id} totalSum={totalSum} />
         ))}
       </tbody>
       <div>
@@ -22,7 +28,7 @@ const CheckoutCart = () => {
           </h2>
           <h2 className="text-muted">
             {" "}
-            <i>555</i>
+            <i>{totalSum}</i>
           </h2>
           <span className="visually-hidden">unread messages</span>
         </div>
@@ -34,7 +40,7 @@ const CheckoutCart = () => {
               handleNavigate(`/company_details/${nameCompany}/${id}/profile`)
             }
           >
-            Back to list
+            à Back to list
           </Button>
         </div>
       </div>

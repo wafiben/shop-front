@@ -1,5 +1,6 @@
 import "../../assets/style/shopCard.css";
-const ShopCard = () => {
+const ShopCard = ({ product }) => {
+  const { nameProduct, price, quantity, SelectedFile, sum, id } = product;
   return (
     <>
       <tr class="item-info">
@@ -13,13 +14,10 @@ const ShopCard = () => {
             <span class="product-image-container product-image-container-3328">
               <span class="product-image-wrapper">
                 <img
-                  itemprop="image"
-                  class="product-image-photo"
-                  src="https://mk-media.mytek.tn/media/catalog/product/cache/434ea0f6efff1c7ebd2d01d049c8f922/p/c/pc300_1.jpg"
-                  loading="lazy"
-                  width="165"
-                  height="165"
-                  alt="Presse Agrumes MOULINEX PC300 25w - Gris"
+                  src={SelectedFile && `/imageProducts/${SelectedFile}`}
+                  width="50%"
+                  className="mx-auto m-1"
+                  alt="Product Image"
                 />
               </span>
             </span>
@@ -27,7 +25,7 @@ const ShopCard = () => {
           <div class="product-item-details">
             <strong class="product-item-name">
               <a href="https://www.mytek.tn/presse-agrumes-moulinex-25w-gris.html">
-                Presse Agrumes MOULINEX PC300 25w - Gris
+                {nameProduct}
               </a>
             </strong>
           </div>
@@ -41,7 +39,7 @@ const ShopCard = () => {
                   id="cart-926094-qty"
                   name="cart[926094][qty]"
                   data-cart-item-id="PC300"
-                  value="1"
+                  value={quantity}
                   type="number"
                   min="0"
                   size="4"
@@ -59,7 +57,7 @@ const ShopCard = () => {
         <td class="col subtotal" data-th="Sous-total">
           <span class="price-excluding-tax" data-label="HT">
             <span class="cart-price">
-              <span class="price">129,000&nbsp;DT</span>
+              <span class="price">{sum}&nbsp;DT</span>
             </span>
           </span>
         </td>
