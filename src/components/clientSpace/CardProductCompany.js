@@ -45,6 +45,7 @@ function CardProductCompany({
         nameProduct={nameProduct}
         price={price}
         SelectedFile={SelectedFile}
+        id={id}
       />
     </>
   );
