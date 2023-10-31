@@ -12,7 +12,7 @@ const ByProductModal = ({
   price,
   SelectedFile,
   qte,
-  id
+  id,
 }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
@@ -45,8 +45,9 @@ const ByProductModal = ({
 
   const handleShop = () => {
     dispatch(
-      addProductToShop({ nameProduct, price, quantity, SelectedFile, sum ,id})
+      addProductToShop({ nameProduct, price, quantity, SelectedFile, sum, id })
     );
+    handleClose();
   };
 
   return (
