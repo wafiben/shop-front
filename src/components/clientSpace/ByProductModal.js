@@ -2,6 +2,8 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useErrorMessage } from "../../hooks/useErrorMessage";
+import { useDispatch } from "react-redux";
+import { addProductToShop } from "../../redux/actions/shopAction.js";
 
 const ByProductModal = ({
   show,
@@ -10,9 +12,12 @@ const ByProductModal = ({
   price,
   SelectedFile,
   qte,
+  id,
 }) => {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { message, setErrorMessage, setTimeShow } = useErrorMessage();
+  const [shop, setShop] = useState([]);
 
   const [sum, setSum] = useState(price);
   const notify = () => {
@@ -38,12 +43,11 @@ const ByProductModal = ({
     }
   };
 
-  const addarticleToShop = () => {
-    if (quantity > qte) {
-      notify();
-    }else{
-      alert('sssss')
-    }
+  const handleShop = () => {
+    dispatch(
+      addProductToShop({ nameProduct, price, quantity, SelectedFile, sum, id })
+    );
+    handleClose();
   };
 
   return (
@@ -73,7 +77,7 @@ const ByProductModal = ({
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={addarticleToShop}>
+          <Button variant="primary" onClick={handleShop}>
             Add to Shop
           </Button>
         </Modal.Footer>

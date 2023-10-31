@@ -85,4 +85,5 @@ export const GET_MESSAGES = "BAN_VERIFY_USER";
 export const DELETE_MESSAGE_LOADING = "DELETE_MESSAGE_LOADING";
 export const DELETE_MESSAGE = "DELETE_MESSAGE";
 
-export const ADD_SHOP = "ADD_SHOP";
+export const ADD_TO_SHOP = "ADD_TO_SHOP";
+/* export const ADD_SHOP = "ADD_SHOP"; */
