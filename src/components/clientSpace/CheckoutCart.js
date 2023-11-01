@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const CheckoutCart = () => {
   const { products } = useSelector((state) => state.shopReducer);
   const totalSum = products.reduce((accumulator, product) => {
-    return accumulator + product.sum;
+    return accumulator + product.sum*product.quantity
   }, 0);
 
   const { id, nameCompany } = useParams();
