@@ -25,6 +25,7 @@ const shopReducer = (state = initialState, action) => {
       } else {
         return { ...state, products: [...state.products, action.payload] };
       }
+
     default:
       return state;
   }

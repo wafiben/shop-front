@@ -4,12 +4,19 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const CheckoutCart = () => {
   const { products } = useSelector((state) => state.shopReducer);
-  const totalSum = products.reduce((accumulator, product) => {
-    return accumulator + product.sum*product.quantity
-  }, 0);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    const totalSum = products.reduce((accumulator, product) => {
+      return accumulator + product.sum;
+    }, 0);
+    setTotal(totalSum);
+  }, [products.length, total]);
 
   const { id, nameCompany } = useParams();
   const handleNavigate = useNavigate();
@@ -17,7 +24,7 @@ const CheckoutCart = () => {
     <div className="container d-flex align-items-center justify-content-around m-4">
       <tbody class="cart item">
         {products.map((product) => (
-          <ShopCard product={product} id={product.id} totalSum={totalSum} />
+          <ShopCard product={product} id={product.id} />
         ))}
       </tbody>
       <div>
@@ -28,7 +35,7 @@ const CheckoutCart = () => {
           </h2>
           <h2 className="text-muted">
             {" "}
-            <i>{totalSum}</i>
+            <i>{total}</i>
           </h2>
           <span className="visually-hidden">unread messages</span>
         </div>
