@@ -52,6 +52,7 @@ const ShopCard = ({ product }) => {
                 />
               </label>
             </div>
+            <p>unit price :{price}</p>
           </div>
         </td>
         <td class="col subtotal" data-th="Sous-total">
