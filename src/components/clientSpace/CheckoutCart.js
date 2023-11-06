@@ -21,15 +21,26 @@ const CheckoutCart = () => {
   const { id, nameCompany } = useParams();
   const handleNavigate = useNavigate();
   return (
-    <div className="container d-flex align-items-center justify-content-around m-4">
-      <tbody class="cart item">
+
+
+<div className="box1panierx">
+    <div className="boxpanierx">
+      <tbody className="cartitem">
         {products.map((product) => (
           <ShopCard product={product} id={product.id} />
         ))}
       </tbody>
+
+
+
+
+
+
+
+
       <div>
-        <div className="d-flex">
-          <h2 className="text-muted">
+        <div className="d-flex m-2 ">
+          <h2 className="text-muted ">
             {" "}
             <i>Total:</i>
           </h2>
@@ -40,17 +51,18 @@ const CheckoutCart = () => {
           <span className="visually-hidden">unread messages</span>
         </div>
         <div>
-          <Button variant="success m-1">Order</Button>
+          <Button variant="success m-4">Order</Button>
           <Button
             variant="primary"
             onClick={() =>
               handleNavigate(`/company_details/${nameCompany}/${id}/profile`)
             }
           >
-            à Back to list
+            Back to shop
           </Button>
         </div>
       </div>
+    </div>
     </div>
   );
 };
