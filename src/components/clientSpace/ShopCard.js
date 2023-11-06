@@ -3,7 +3,7 @@ const ShopCard = ({ product }) => {
   const { nameProduct, price, quantity, SelectedFile, sum, id } = product;
   return (
     <>
-      <tr class="item-info">
+      {/* <tr class="item-info">
         <td data-th="Article" class="col item">
           <a
             href="https://www.mytek.tn/presse-agrumes-moulinex-25w-gris.html"
@@ -63,7 +63,85 @@ const ShopCard = ({ product }) => {
           </span>
         </td>
       </tr>
-      <hr />
+      <hr /> */}
+
+
+
+
+
+      {/* ::::::::::::::: */}
+      <div class=" shopping-cart">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="text">  Product Name</th>
+              <th class="text">Quantity</th>
+              <th class="text">unit price</th>
+              <th class="text"> sum price</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="">
+
+                  <img
+                    src={SelectedFile && `/imageProducts/${SelectedFile}`}
+                    width="70px"
+                    height="50%"
+                    className="mx-auto m-4"
+                    alt="Product Image"
+                  />
+
+                  <div class="product-info">
+                    <h4 class="product-title"> {nameProduct}</h4>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                <div class="count-input">
+                  {quantity}
+                </div>
+              </td>
+              <td class="text-center text-lg text-medium">{price}
+              </td>
+              <td class="text-center text-lg text-medium"><span class="price">{sum}&nbsp;</span></td>
+              <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+            </tr>
+
+          </tbody>
+
+
+
+
+        </table >
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </>
   );
 };
