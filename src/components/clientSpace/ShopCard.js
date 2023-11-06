@@ -67,7 +67,7 @@ const ShopCard = ({ product }) => {
 
 
 {/* ::::::: */}
-
+{/* :::: */}
 
       {/* ::::::::::::::: */}
       <div class=" shopping-cart">
