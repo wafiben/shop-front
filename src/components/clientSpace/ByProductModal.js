@@ -2,8 +2,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { useErrorMessage } from "../../hooks/useErrorMessage";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProductToShop } from "../../redux/actions/shopAction.js";
+import { useEffect } from "react";
 
 const ByProductModal = ({
   show,
@@ -13,19 +14,34 @@ const ByProductModal = ({
   SelectedFile,
   qte,
   id,
+  disable,
 }) => {
+  const { products } = useSelector((state) => state.shopReducer);
+
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   const { message, setErrorMessage, setTimeShow } = useErrorMessage();
-  const [shop, setShop] = useState([]);
-
   const [sum, setSum] = useState(price);
   const notify = () => {
     setErrorMessage("quantity");
     setTimeShow();
   };
+  const notifyFromShop = () => {
+    setErrorMessage("stock");
+    setTimeShow();
+  };
+  useEffect(() => {
+    if (disable) {
+      notifyFromShop();
+    }
+
+    /* if (product.quantity + quantity > qte) {
+      notify();
+    } */
+  }, [disable, show, quantity]);
 
   const incrementQuantity = () => {
+    const product = products.find((elt) => elt.id === id);
     if (quantity >= qte) {
       notify();
     } else {
@@ -44,10 +60,22 @@ const ByProductModal = ({
   };
 
   const handleShop = () => {
-    dispatch(
-      addProductToShop({ nameProduct, price, quantity, SelectedFile, sum, id })
-    );
-    handleClose();
+    const product = products.find((elt) => elt.id === id);
+    if (product && product.quantity + quantity > qte) {
+      notify();
+    } else {
+      dispatch(
+        addProductToShop({
+          nameProduct,
+          price,
+          quantity,
+          SelectedFile,
+          sum,
+          id,
+        })
+      );
+      handleClose();
+    }
   };
 
   return (
@@ -65,11 +93,19 @@ const ByProductModal = ({
           alt="Product Image"
         />
         <div className="d-flex justify-content-center m-1">
-          <button className="quantity" onClick={incrementQuantity}>
+          <button
+            className="quantity"
+            onClick={incrementQuantity}
+            disabled={disable}
+          >
             +
           </button>
           <span>{quantity}</span>
-          <button className="quantity" onClick={decrementQuantity}>
+          <button
+            className="quantity"
+            onClick={decrementQuantity}
+            disabled={disable}
+          >
             -
           </button>
         </div>
@@ -77,7 +113,7 @@ const ByProductModal = ({
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleShop}>
+          <Button variant="primary" onClick={handleShop} disabled={disable}>
             Add to Shop
           </Button>
         </Modal.Footer>
