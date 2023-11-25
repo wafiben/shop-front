@@ -65,27 +65,24 @@ const ShopCard = ({ product }) => {
       </tr>
       <hr /> */}
 
-
-{/* ::::::: */}
-{/* :::: */}
+      {/* ::::::: */}
+      {/* :::: */}
 
       {/* ::::::::::::::: */}
       <div class=" shopping-cart">
         <table class="table">
           <thead>
             <tr>
-              <th class="text">  Product Name</th>
+              <th class="text">Product Name</th>
               <th class="text">Quantity</th>
               <th class="text">unit price</th>
               <th class="text"> sum price</th>
-
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
                 <div class="">
-
                   <img
                     src={SelectedFile && `/imageProducts/${SelectedFile}`}
                     width="70px"
@@ -100,48 +97,27 @@ const ShopCard = ({ product }) => {
                 </div>
               </td>
               <td class="text-center">
-                <div class="count-input">
-                  {quantity}
-                </div>
+                <div class="count-input">{quantity}</div>
               </td>
-              <td class="text-center text-lg text-medium">{price}
+              <td class="text-center text-lg text-medium">{price}</td>
+              <td class="text-center text-lg text-medium">
+                <span class="price">{sum}&nbsp;</span>
               </td>
-              <td class="text-center text-lg text-medium"><span class="price">{sum}&nbsp;</span></td>
-              <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title="" data-original-title="Remove item"><i class="fa fa-trash"></i></a></td>
+              <td class="text-center">
+                <a
+                  class="remove-from-cart"
+                  href="#"
+                  data-toggle="tooltip"
+                  title=""
+                  data-original-title="Remove item"
+                >
+                  <i class="fa fa-trash"></i>
+                </a>
+              </td>
             </tr>
-
           </tbody>
-
-
-
-
-        </table >
-
+        </table>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </>
   );
 };

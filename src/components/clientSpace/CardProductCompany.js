@@ -3,6 +3,7 @@ import "../../assets/style/detailsCompany.css";
 import Button from "react-bootstrap/Button";
 import ByProductModal from "./ByProductModal";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function CardProductCompany({
   nameProduct,
@@ -13,9 +14,27 @@ function CardProductCompany({
   show,
   id,
 }) {
+  const { products } = useSelector((state) => state.shopReducer);
+  const [disable, setDisable] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const handleShow = () => setShowModal(true);
+  const handleQuantityPermission = (quantityStateAdded,products) => {
+    const product = products.find((elt) => elt.id === id);
+    if((quantityStateAdded + product.quantity < qte)){
+      setDisable(true)
+    }
+    return !(quantityStateAdded + product.quantity < qte);
+  };
+  const handleShow = () => {
+    const product = products.find((elt) => elt.id === id);
+    if (product && qte <= product.quantity) {
+      setDisable(true);
+    } else {
+      setDisable(false);
+    }
+    setShowModal(true);
+  };
   const handleClose = () => setShowModal(false);
+
   return (
     <>
       <div className="divcart">
@@ -46,6 +65,8 @@ function CardProductCompany({
         price={price}
         SelectedFile={SelectedFile}
         id={id}
+        disable={disable}
+        handleQuantityPermission={handleQuantityPermission}
       />
     </>
   );
