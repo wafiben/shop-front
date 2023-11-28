@@ -38,7 +38,7 @@ import ActivatedClient from "./pages/admin/client/ActivatedClient";
 import BannedClient from "./pages/admin/client/BannedClient";
 import MessageList from "./pages/admin/messages/MessageList";
 import Dashboard from "./pages/admin/dashboard";
-import CheckoutCart from "./components/clientSpace/CheckoutCart";
+import CheckoutCart from "./pages/client-space/CheckoutCart.js";
 
 function App() {
   const routes = [
@@ -200,11 +200,11 @@ function App() {
     {
       path: "/company_details/:nameCompany/:id/profile",
       element: <CompanyDetails />,
-         children: [
-            { path: "setting", element: <SettingCompany /> },
-            { path: "profile", element: <DetailsCompanyProfile /> },
-            { path: "story", element: <ProductCompanyInProfile /> },
-          ],
+      children: [
+        { path: "setting", element: <SettingCompany /> },
+        { path: "profile", element: <DetailsCompanyProfile /> },
+        { path: "story", element: <ProductCompanyInProfile /> },
+      ],
     },
     {
       path: "/company_details/:nameCompany/:id/profile/checkout_cart",
