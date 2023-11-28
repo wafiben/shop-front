@@ -12,8 +12,6 @@ function CompanyDetailsProfile() {
     (state) => state.companyReducer
   );
   const { id, nameCompany } = useParams();
-  
-
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getOneCompany(id));
