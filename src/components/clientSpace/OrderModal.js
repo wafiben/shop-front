@@ -3,21 +3,79 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import locationsData from "../../utils/tunisia.json";
 
 export const OrderModal = ({ show, handleClose }) => {
   const { products } = useSelector((state) => state.shopReducer);
   const [order, setOrder] = useState({
-    destination: "",
+    destination: {
+      state: "",
+      city: "",
+      locality: "",
+    },
     number: "",
     products: products,
   });
 
+  const [cp, setCp] = useState(null);
+  const handleStateChange = (selectedState) => {
+    setOrder({
+      ...order,
+      destination: {
+        ...order.destination,
+        state: selectedState,
+        city: "",
+        locality: "",
+      },
+    });
+  };
+
+  const handleCityChange = (selectedCity) => {
+    setOrder({
+      ...order,
+      destination: {
+        ...order.destination,
+        city: selectedCity,
+        locality: "",
+      },
+    });
+  };
+
+  const handleLocalityChange = (selectedLocality) => {
+    setOrder({
+      ...order,
+      destination: {
+        ...order.destination,
+        locality: selectedLocality,
+      },
+    });
+    const { cp } = locationsData[order.destination.state].find(
+      (elt) => elt.localite === selectedLocality
+    );
+    setCp(cp);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("==>", order);
+    console.log("==>order", order);
   };
+
+  useEffect(() => {
+    if (!show) {
+      setOrder({
+        ...order,
+        destination: {
+          state: "",
+          city: "",
+          locality: "",
+        },
+        number: "",
+      });
+    }
+  }, [show]);
+
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -29,37 +87,84 @@ export const OrderModal = ({ show, handleClose }) => {
             <Form.Label column sm="2">
               Destination
             </Form.Label>
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-              state
-            </Form.Label>
             <Col sm="10">
               <Form.Control
                 required={true}
-                type="text"
-                placeholder="state"
-                onChange={(e) =>
-                  setOrder({ ...order, destination: e.target.value })
-                }
-              />
+                as="select"
+                value={order.destination.state}
+                onChange={(e) => handleStateChange(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select State
+                </option>
+                {Object.keys(locationsData).map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </Form.Control>
             </Col>
           </Form.Group>
-          <Form.Group as={Row} className="mb-3">
-            <Form.Label column sm="2">
-            city
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                required={true}
-                type="text"
-                placeholder="city"
-                onChange={(e) =>
-                  setOrder({ ...order, destination: e.target.value })
-                }
-              />
-            </Col>
-          </Form.Group>
+
+          {order.destination.state && (
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="2">
+                City
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  required={true}
+                  as="select"
+                  value={order.destination.city}
+                  onChange={(e) => handleCityChange(e.target.value)}
+                >
+                  <option value="" disabled>
+                    Select City
+                  </option>
+                  {locationsData[order.destination.state].map((city) => (
+                    <option key={city.delegation} value={city.delegation}>
+                      {city.delegation}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Col>
+            </Form.Group>
+          )}
+
+          {order.destination.city && (
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="2">
+                Locality
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control
+                  required={true}
+                  as="select"
+                  value={order.destination.locality}
+                  onChange={(e) => handleLocalityChange(e.target.value)}
+                >
+                  <option value="" disabled>
+                    Select Locality
+                  </option>
+                  {locationsData[order.destination.state].map((locality) => (
+                    <option key={locality.localite} value={locality.localite}>
+                      {locality.localite}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Col>
+            </Form.Group>
+          )}
+
+          {order.destination.locality && (
+            <Form.Group as={Row} className="mb-3">
+              <Form.Label column sm="2">
+                CP
+              </Form.Label>
+              <Col sm="10">{cp && cp}</Col>
+            </Form.Group>
+          )}
+
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="2">
               Number
@@ -74,7 +179,7 @@ export const OrderModal = ({ show, handleClose }) => {
             </Col>
           </Form.Group>
           <Button variant="primary" type="submit">
-            make Order
+            Make Order
           </Button>
         </Form>
       </Modal.Body>
