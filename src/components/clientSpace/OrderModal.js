@@ -29,11 +29,31 @@ export const OrderModal = ({ show, handleClose }) => {
             <Form.Label column sm="2">
               Destination
             </Form.Label>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+              state
+            </Form.Label>
             <Col sm="10">
               <Form.Control
                 required={true}
                 type="text"
-                placeholder="Specify the destination for the command delivery"
+                placeholder="state"
+                onChange={(e) =>
+                  setOrder({ ...order, destination: e.target.value })
+                }
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3">
+            <Form.Label column sm="2">
+            city
+            </Form.Label>
+            <Col sm="10">
+              <Form.Control
+                required={true}
+                type="text"
+                placeholder="city"
                 onChange={(e) =>
                   setOrder({ ...order, destination: e.target.value })
                 }
