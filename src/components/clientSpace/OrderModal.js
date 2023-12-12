@@ -6,9 +6,18 @@ import Col from "react-bootstrap/Col";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import locationsData from "../../utils/tunisia.json";
+import { useParams } from "react-router-dom";
+import { makeOrderAsDraft } from "../../redux/actions/shopAction";
+import { useDispatch } from "react-redux";
+import Spinner from "react-bootstrap/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export const OrderModal = ({ show, handleClose }) => {
-  const { products } = useSelector((state) => state.shopReducer);
+  const navigate = useNavigate();
+  const { products, isDraftLoading } = useSelector(
+    (state) => state.shopReducer
+  );
+  const { id, nameCompany } = useParams();
   const [order, setOrder] = useState({
     destination: {
       state: "",
@@ -16,8 +25,8 @@ export const OrderModal = ({ show, handleClose }) => {
       locality: "",
     },
     number: "",
-    products: products,
   });
+  const dispatch = useDispatch();
 
   const [cp, setCp] = useState(null);
   const handleStateChange = (selectedState) => {
@@ -59,7 +68,15 @@ export const OrderModal = ({ show, handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("==>order", order);
+    const { destination, number } = order;
+    const idOfCompany = id;
+    const orderObj = {
+      destination: { ...destination, cp },
+      number,
+      products,
+      idOfCompany,
+    };
+    dispatch(makeOrderAsDraft(orderObj, navigate, { id, nameCompany }));
   };
 
   useEffect(() => {
@@ -178,9 +195,13 @@ export const OrderModal = ({ show, handleClose }) => {
               />
             </Col>
           </Form.Group>
-          <Button variant="primary" type="submit">
-            Make Order
-          </Button>
+          {isDraftLoading ? (
+            <Spinner animation="border" variant="primary" />
+          ) : (
+            <Button variant="primary" type="submit">
+              Make Order
+            </Button>
+          )}
         </Form>
       </Modal.Body>
       <Modal.Footer>

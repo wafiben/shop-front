@@ -1,7 +1,12 @@
-import { ADD_TO_SHOP } from "../types";
+import {
+  ADD_TO_SHOP,
+  MAKE_ORDER_AS_DRAFT_LOADING,
+  MAKE_ORDER_AS_DRAFT,
+} from "../types";
 
 const initialState = {
   products: [],
+  isDraftLoading: false,
 };
 
 const shopReducer = (state = initialState, action) => {
@@ -25,6 +30,10 @@ const shopReducer = (state = initialState, action) => {
       } else {
         return { ...state, products: [...state.products, action.payload] };
       }
+    case MAKE_ORDER_AS_DRAFT_LOADING:
+      return { ...state, isDraftLoading: true };
+    case MAKE_ORDER_AS_DRAFT:
+      return { ...state, isDraftLoading: false };
 
     default:
       return state;
