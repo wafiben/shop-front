@@ -1,19 +1,22 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getOneCompany } from "../redux/actions/companyAction"
-import { useEffect } from 'react';
-import NavbarAfterConnect from '../components/navbars/NavbarAfterConneccilent';
-import CompanyDetailsProfile from '../components/clientSpace/CompanyDetails';
-
+import React from "react";
+import NavbarAfterConnect from "../components/navbars/NavbarAfterConneccilent";
+import CompanyDetailsProfile from "../components/clientSpace/CompanyDetails";
+import { getListOrderbyClient } from "../redux/actions/shopAction";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 function CompanyDetails() {
-    return (
-        <>
-            <NavbarAfterConnect />
-            <CompanyDetailsProfile />
-        </>
-    )
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getListOrderbyClient());
+  }, []);
+
+  return (
+    <>
+      <NavbarAfterConnect />
+      <CompanyDetailsProfile />
+    </>
+  );
 }
 
-export default CompanyDetails
+export default CompanyDetails;
