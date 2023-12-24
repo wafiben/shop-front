@@ -3,8 +3,6 @@ import {
   CALCULATE_TOTAL,
   MAKE_ORDER_AS_DRAFT,
   MAKE_ORDER_AS_DRAFT_LOADING,
-  GET_LIST_ORDER_CLIENT,
-  GET_LIST_ORDER_CLIENT_LOADING,
 } from "../types";
 import axios from "axios";
 import { baseUrl } from "../../config";
@@ -35,18 +33,3 @@ export const makeOrderAsDraft =
     }
   };
 
-export const getListOrderbyClient = () => async (dispatch) => {
-  dispatch({ type: GET_LIST_ORDER_CLIENT_LOADING });
-  const config = {
-    headers: {
-      token: localStorage.getItem("token"),
-    },
-  };
-  try {
-    const res = await axios.get(`${baseUrl}/shop-client`, config);
-    console.log("==>hello", res);
-    /*     dispatch({ type: MAKE_ORDER_AS_DRAFT, payload: order }); */
-  } catch (error) {
-    console.log(error);
-  }
-};
