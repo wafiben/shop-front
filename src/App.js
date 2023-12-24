@@ -39,6 +39,7 @@ import BannedClient from "./pages/admin/client/BannedClient";
 import MessageList from "./pages/admin/messages/MessageList";
 import Dashboard from "./pages/admin/dashboard";
 import CheckoutCart from "./pages/client-space/CheckoutCart.js";
+import OrderlistDraft from "./pages/profileClient/OrderlistDraftClient.js";
 
 function App() {
   const routes = [
@@ -166,12 +167,14 @@ function App() {
       ),
       children: [
         { path: "home", element: <ClientSpaceListCompany /> },
+        { path: "order-draft", element: <OrderlistDraft /> },
         {
           path: "profile_client",
           element: <ProfileClient />,
           children: [
             { path: "setting", element: <SettingClient /> },
             { path: "details", element: <DetailsClientProfile /> },
+          
           ],
         },
       ],
