@@ -3,7 +3,6 @@ import {useSelector,useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {verifyValidationCode} from '../../redux/actions/auth';
 import {Spinner} from 'react-bootstrap';
-
 import {useErrorMessage} from './../../hooks/useErrorMessage';
 
 
@@ -14,15 +13,18 @@ function CodeVerification() {
 	const dispatch=useDispatch()
 	const {emailToVerify}=useSelector(state => state.authReducer);
 	const navigate=useNavigate()
+
 	const handleChange=(index,value) => {
 		const updateDigits=[...code];
 		updateDigits[index]=value;
 		setCode(updateDigits)
 	}
+
 	const handleSubmit=(e) => {
 		e.preventDefault();
 		dispatch(verifyValidationCode(code.join(''),emailToVerify,navigate))
 	}
+	
 	useEffect(() => {
 		if(!emailToVerify) {
 			navigate('/');
