@@ -25,6 +25,8 @@ const CheckoutCart = () => {
 
   const { id, nameCompany } = useParams();
   const handleNavigate = useNavigate();
+  const [count,setCount]=useState(0);
+  
   return (
     <>
       <div className="box1panierx">
