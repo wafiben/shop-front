@@ -38,7 +38,8 @@ import ActivatedClient from "./pages/admin/client/ActivatedClient";
 import BannedClient from "./pages/admin/client/BannedClient";
 import MessageList from "./pages/admin/messages/MessageList";
 import Dashboard from "./pages/admin/dashboard";
-import CheckoutCart from "./components/clientSpace/CheckoutCart";
+import CheckoutCart from "./pages/client-space/CheckoutCart.js";
+import OrderlistDraft from "./pages/profileClient/OrderlistDraftClient.js";
 
 function App() {
   const routes = [
@@ -166,12 +167,14 @@ function App() {
       ),
       children: [
         { path: "home", element: <ClientSpaceListCompany /> },
+        { path: "order-draft", element: <OrderlistDraft /> },
         {
           path: "profile_client",
           element: <ProfileClient />,
           children: [
             { path: "setting", element: <SettingClient /> },
             { path: "details", element: <DetailsClientProfile /> },
+          
           ],
         },
       ],
@@ -200,11 +203,11 @@ function App() {
     {
       path: "/company_details/:nameCompany/:id/profile",
       element: <CompanyDetails />,
-         children: [
-            { path: "setting", element: <SettingCompany /> },
-            { path: "profile", element: <DetailsCompanyProfile /> },
-            { path: "story", element: <ProductCompanyInProfile /> },
-          ],
+      children: [
+        { path: "setting", element: <SettingCompany /> },
+        { path: "profile", element: <DetailsCompanyProfile /> },
+        { path: "story", element: <ProductCompanyInProfile /> },
+      ],
     },
     {
       path: "/company_details/:nameCompany/:id/profile/checkout_cart",
