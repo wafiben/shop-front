@@ -12,7 +12,6 @@ function Card() {
         <Image image={logoButcher} />
         <TextFiled textFiled="butcher shop" className="text-warning" />
         <TextFiled textFiled="Adress" />
-        {/* <TextFiled textFiled="200grm" /> */}
       </div>
     </div>
   );

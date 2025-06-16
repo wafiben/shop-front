@@ -131,21 +131,11 @@ const Contact=() => {
 							</div>
 						</div>
 						<div className="col-lg-5">
-							{/* <div class="single_address">
-								<i class="fa fa-map-marker"></i>
-								<h4>Our Address</h4>
-								<p>3481 Melrose Place, Beverly Hills</p>
-							</div> */}
 							<div className="single_address">
 								<i className="fa fa-envelope"></i>
 								<h4>Send your message</h4>
-								<p>Info@example.com</p>
+								<p>wafibenjeddou@gmail.com</p>
 							</div>
-							{/* <div class="single_address">
-								<i class="fa fa-phone"></i>
-								<h4>Call us on</h4>
-								<p>(+1) 517 397 7100</p>
-							</div> */}
 							<div className="single_address">
 								<i className="fa fa-clock-o"></i>
 								<h4>Work Time</h4>
@@ -159,4 +149,3 @@ const Contact=() => {
 	);
 };
 export default Contact;
-/*git checkout feature/css-shop*/

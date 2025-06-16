@@ -23,6 +23,7 @@ import {
 	DELETE_MESSAGE_LOADING,
 	DELETE_MESSAGE
 } from "../types";
+
 const initState={
 	sendMessageLoading: false,
 	sendMessage: "",

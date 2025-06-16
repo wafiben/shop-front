@@ -1,4 +1,3 @@
-import React from "react";
 import Form from "react-bootstrap/Form";
 import DropDownListUnit from "./DropDownListUnit";
 
@@ -13,7 +12,6 @@ function ModifyModal({
 	handleUnit,
 	handleChange,
 	handleChangeImage,
-	file,
 	selectedFile,
 	msg,
 

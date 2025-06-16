@@ -8,7 +8,6 @@ function DropDownListUnit({ unit, handleUnit }) {
       <Dropdown.Toggle
         variant="secondary"
         id="dropdown-basic"
-        /* onClick={() => console.log("hello")} */
       >
         {unit}
       </Dropdown.Toggle>
